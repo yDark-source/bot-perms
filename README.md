@@ -11,7 +11,7 @@ A package é um simples e compacta sobre permissões de bots, ela retorna caso o
 
 ```js
 const discord = require("discord.js")
-const client = new discord.Client()
+const client = new discord.Client();
 
 client.on('message', msg => {
     if(msg.content === "diga oi") {
