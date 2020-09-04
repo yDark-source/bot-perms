@@ -4,9 +4,6 @@
 
 A package é um simples e compacta sobre permissões de bots, ela retorna caso o bot não tiver uma certa permissão ou o usuario que executou o comando
 
-![https://media.discordapp.net/attachments/720979067804975165/751227861578416249/unknown.png]
-
-![https://media.discordapp.net/attachments/714638845618159621/751233798317932624/unknown.png]
 
 *Exemplo*
 
@@ -27,7 +24,7 @@ client.on('message', msg => {
         }
     }
 
-  new api.requestPerm("BAN_MEMBERS",msg.channel.id,msg.member,client,codeClass) // ele irá retornar que não tem a permissão de banir membros. (todos argumentos são obrigátorios)
+  new api.requestPerm("BAN_MEMBERS",msg.channel.id,msg.member,client,codeClass) // ele irá retornar caso o bot ou o membro não tenha a permissão de banir membros. (todos argumentos são obrigátorios)
   }
 })
 
