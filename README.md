@@ -25,11 +25,41 @@ client.on('message', msg => {
     }
 
   new api.requestPerm("BAN_MEMBERS",msg.channel.id,msg.member,client,codeClass) // ele irá retornar caso o bot ou o membro não tenha a permissão de banir membros. (todos argumentos são obrigátorios)
+
   }
 })
 
+
 client.login("token")
 
+```
+# Você também pode costumizar suas  mensagens
+
+```js
+const discord = require("discord.js")
+const client = new discord.Client();
+
+client.on('message', msg => {
+    if(msg.content === "diga oi") {
+
+       const api = require("bot-perms") 
+
+        class codeClass {
+        async code() {
+            msg.channel.send("oi")
+        }
+    }
+
+  api.setUserText("vc precisa da perm {perm}") // Ele vai trocar a  perm pela permissão nescessaria
+  api.setBotText("eu preciso da perm {perm}")
+
+  new api.requestPerm("BAN_MEMBERS",msg.channel.id,msg.member,client,codeClass) // ele irá retornar caso o bot ou o membro não tenha a permissão de banir membros. (todos argumentos são obrigátorios)
+
+  }
+})
+
+
+client.login("token")
 ```
 
 Todas as permissões estão aqui:
