@@ -1,3 +1,21 @@
+
+let textStringUser = "Para você executar esse comando, você precisa da permissão \`{perm}\`"
+let textStringBOT = "Para você executar esse comando, eu preciso da permissão \`{perm}\`"
+
+
+function setUserText(text) {
+  const text_ = String(text)
+
+  textStringUser = text_.toString()
+}
+
+function setBotText(text) {
+  const text_ = String(text)
+
+  textStringBOT= text_.toString()
+}
+
+
 function userPerm(perm,channel,member,client,classes) {
   this.perm = perm
   this.channel = channel
@@ -40,13 +58,24 @@ function userPerm(perm,channel,member,client,classes) {
 "MANAGE_EMOJIS": "GERENCIAR EMOJIS"
   }
 
+  let userVerify = textStringUser
+  let botVerify = textStringBOT
+
+  while(userVerify.includes("{perm}")) {
+    userVerify = userVerify.replace("{perm}",permissionObject[perm])
+  }
+
+  while(botVerify.includes("{perm}")) {
+    botVerify = botVerify.replace("{perm}",permissionObject[perm])
+  }
+
   let embed = new MessageEmbed()
   .setColor("#36393e")
-  .setDescription(`Para você executar esse comando, você precisa da permissão \`${permissionObject[perm]}\``)
+  .setDescription(userVerify)
 
   let embedBOT = new MessageEmbed()
   .setColor("#36393e")
-  .setDescription(`Para você executar esse comando, eu preciso da permissão \`${permissionObject[perm]}\``)
+  .setDescription(botVerify)
 
   if(!this.member.hasPermission(this.perm)) return this.client.channels.cache.get(channel).send(embed)
   if(!this.client.channels.cache.get(this.channel).guild.me.hasPermission(this.perm)) return this.client.channels.cache.get(channel).send(embedBOT)
@@ -59,3 +88,5 @@ function userPerm(perm,channel,member,client,classes) {
 
 
 module.exports.requestPerm = userPerm
+module.exports.setUserText = setUserText
+module.exports.setBotText = setBotText
