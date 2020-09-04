@@ -4,11 +4,11 @@
 
 A package é um simples e compacta sobre permissões de bots, ela retorna caso o bot não tiver uma certa permissão ou o usuario que executou o comando
 
-!['https://media.discordapp.net/attachments/720979067804975165/751227861578416249/unknown.png']
+![https://media.discordapp.net/attachments/720979067804975165/751227861578416249/unknown.png]
 
-!["https://media.discordapp.net/attachments/714638845618159621/751233798317932624/unknown.png"]
+![https://media.discordapp.net/attachments/714638845618159621/751233798317932624/unknown.png]
 
-*** Exemplo ***
+*Exemplo*
 
 # Obs: Para você usar essa package, você precisará da package: discord.js
 
