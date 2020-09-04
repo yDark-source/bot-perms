@@ -1,0 +1,19 @@
+{
+  "name": "bot-perms",
+  "version": "1.0.0",
+  "description": "Gerenciador de perms",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yDark-source/bot-perms.git"
+  },
+  "author": "Leozin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yDark-source/bot-perms/issues"
+  },
+  "homepage": "https://github.com/yDark-source/bot-perms#readme"
+}
