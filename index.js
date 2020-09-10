@@ -2,25 +2,16 @@
 let textStringUser = "Para você executar esse comando, você precisa da permissão \`{perm}\`"
 let textStringBOT = "Para você executar esse comando, eu preciso da permissão \`{perm}\`"
 
-
-function setUserText(text) {
-  const text_ = String(text)
-
-  textStringUser = text_.toString()
-}
-
-function setBotText(text) {
-  const text_ = String(text)
-
-  textStringBOT= text_.toString()
-}
-
-
-function userPerm(perm,channel,member,client,classes) {
+function userPerm(perm,channel,member,client,classes,object) {
   this.perm = perm
   this.channel = channel
   this.member = member
   this.client = client
+  this.object = object
+
+  if(typeof this.object !== 'object')  {
+    this.object = {ignoreBot: false,ignoreUser: false,color: "#36393e",textUser: textStringUser,textBot: textStringBOT}
+  }
 
   const { MessageEmbed } = require("discord.js")
 
@@ -58,8 +49,8 @@ function userPerm(perm,channel,member,client,classes) {
 "MANAGE_EMOJIS": "GERENCIAR EMOJIS"
   }
 
-  let userVerify = textStringUser
-  let botVerify = textStringBOT
+  let userVerify = this.object.textUser
+  let botVerify = this.object.textBot
 
   while(userVerify.includes("{perm}")) {
     userVerify = userVerify.replace("{perm}",permissionObject[perm])
@@ -70,23 +61,35 @@ function userPerm(perm,channel,member,client,classes) {
   }
 
   let embed = new MessageEmbed()
-  .setColor("#36393e")
   .setDescription(userVerify)
+  if(typeof this.object.color === 'string') {
+    embed.setColor(this.object.color)
+    }
 
   let embedBOT = new MessageEmbed()
-  .setColor("#36393e")
-  .setDescription(botVerify)
+  if(typeof this.object.color === 'string') {
+  embedBOT.setColor(this.object.color)
+  }
+  embedBOT.setDescription(botVerify)
+
+  if(this.object.ignoreUser ===  true) {
 
   if(!this.member.hasPermission(this.perm)) return this.client.channels.cache.get(channel).send(embed)
+
+  }
+
+
+  if(this.object.ignoreBot !== true) {
+
   if(!this.client.channels.cache.get(this.channel).guild.me.hasPermission(this.perm)) return this.client.channels.cache.get(channel).send(embedBOT)
+  
+}
 
   const class_ = new classes()    
   
-  return class_.code()
+  return class_()
   
 }
 
 
 module.exports.requestPerm = userPerm
-module.exports.setUserText = setUserText
-module.exports.setBotText = setBotText
